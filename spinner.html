@@ -10,7 +10,6 @@
   <body>
     <div id="root">
       <canvas id="canvas" width="610" height="610" style="border:4px solid gray;">
-
       </canvas>
     </div>
     <script>
@@ -23,26 +22,40 @@
       ctx.lineWidth=4
 
 
-      // gloal var
-      let grid;
-      let resolution = 600
-      let cols = 60 / resolution;
-      let rows = 60 / resolution
 
 
 
+      // small squares
+      for (let i = 5; i <= 605; i=i+6) {
+        // vert
+        ctx.moveTo(i,5)
+        ctx.lineTo(i,605)
+        // horiz
+        ctx.moveTo(5,i)
+        ctx.lineTo(605,i)
 
-
-      for (let i = 0; i < cols; i++) {
-        ctx.moveTo(i,0)
-        ctx.lineTo(i,600)
+        ctx.strokeStyle="#f0f0f0"
         ctx.stroke()
       }
-      for (let j = 0; j < rows; j++) {
-        ctx.moveTo(j,0)
-        ctx.lineTo(j,600)
+      //  big squares (visual)
+      ctx.beginPath();
+      // 30 here makes 20 big grids
+      for(let i=5; i<=605; i = i+30){
+        ctx.moveTo(i,5)
+        ctx.lineTo(i,605)
+        // horiz
+        ctx.moveTo(5,i)
+        ctx.lineTo(605,i)
+
+        ctx.strokeStyle="#c0c0c0"
         ctx.stroke()
       }
+
+      // for (let j = 0; j < rows; j++) {
+      //   ctx.moveTo(5,i)
+      //   ctx.lineTo(605,i)
+      //   ctx.stroke()
+      // }
 
 
 
