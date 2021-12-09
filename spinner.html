@@ -58,14 +58,17 @@
             state++;
           }
           if (state === 2) {
+            console.log("b")
             spinnerContainerElement.innerHTML = spinnerFrames[1].text;
             state++;
           }
           if (state === 3) {
+            console.log("c")
             spinnerContainerElement.innerHTML = spinnerFrames[2].text;
             state++;
           }
           if (state === 4) {
+            console.log("d")
             spinnerContainerElement.innerHTML = spinnerFrames[3].text;
             state = 1;
           }
