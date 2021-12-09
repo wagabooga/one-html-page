@@ -9,8 +9,8 @@
   </head>
   <body>
     <div id="root">
-      <canvas id="canvas" width="610" height="610" style="border:4px solid gray;">
-      </canvas>
+      <canvas id="canvas" width="610" height="610" style="border:4px solid gray;"></canvas>
+      <div id="spinner_container"></div>
     </div>
     <script>
       const root = document.getElementById("root");
@@ -21,9 +21,67 @@
       ctx.strokeStyle='black'
       ctx.lineWidth=4
 
+      let spinnerFrames = [
+        {
+          id: "1",
+          text: ["\r|"],
+          state: 1
+        },
+        {
+          id: "2",
+          text: ["\r/"],
+          state: 2
+        },
+        {
+          id: "3",
+          text: ["\r-"],
+          state: 3
+        },
+        {
+          id: "4",
+          text: ["\r\\"],
+          state: 4
+        },
+      ];
 
 
+      // resets the grid screen after 5 seconds
+      let state = 1;
+      function showSpinner(){
+        let spinnerContainerElement = document.getElementById('spinner_container')
+        spinnerContainerElement.innerHTML = "AAAAAAAAAAAAAAAAAAAA"
+        setInterval(() => {
+          console.log("state:",state)
+          if (state === 1) {
+            console.log("a")
+            spinnerContainerElement.innerHTML = spinnerFrames[0].text;
+            state++;
+          }
+          if (state === 2) {
+            spinnerContainerElement.innerHTML = spinnerFrames[1].text;
+            state++;
+          }
+          if (state === 3) {
+            spinnerContainerElement.innerHTML = spinnerFrames[2].text;
+            state++;
+          }
+          if (state === 4) {
+            spinnerContainerElement.innerHTML = spinnerFrames[3].text;
+            state = 1;
+          }
+        }, 200);
+      }
+      showSpinner()
 
+      id = setInterval(frame,5)
+      function frame() {
+        for (let frame of spinnerFrames){
+          if (frame.state === 4){
+            spinnerContainerElement.innerHTML = spinnerFrames[0].text;
+            clearInterval(id)
+          } 
+        }
+      }
 
       // small squares
       for (let i = 5; i <= 605; i=i+6) {
@@ -50,17 +108,6 @@
         ctx.strokeStyle="#c0c0c0"
         ctx.stroke()
       }
-
-      // for (let j = 0; j < rows; j++) {
-      //   ctx.moveTo(5,i)
-      //   ctx.lineTo(605,i)
-      //   ctx.stroke()
-      // }
-
-
-
-
-
 
 
 
@@ -105,51 +152,6 @@
       //   }
       // }
 
-      // draw()
-      // frames (dancing man)
-      // let spinnerFrames = [
-      //   {
-      //     id: "1",
-      //     text: ["\r|"],
-      //   },
-      //   {
-      //     id: "2",
-      //     text: ["\r/"],
-      //   },
-      //   {
-      //     id: "3",
-      //     text: ["\r-"],
-      //   },
-      //   {
-      //     id: "4",
-      //     text: ["\r\\"],
-      //   },
-      // ];
-
-      // spinner code
-      // function continueSpin() {
-      //   let state = 1;
-      //   setInterval(() => {
-      //     if (state === 1) {
-      //       root.innerText = spinnerFrames[0].text;
-      //       console.log("a");
-      //       state++;
-      //     }
-      //     if (state === 2) {
-      //       root.innerText = spinnerFrames[1].text;
-      //       state++;
-      //     }
-      //     if (state === 3) {
-      //       root.innerText = spinnerFrames[2].text;
-      //       state++;
-      //     }
-      //     if (state === 4) {
-      //       root.innerText = spinnerFrames[3].text;
-      //       state = 1;
-      //     }
-      //   }, 400);
-      // }
-      // continueSpin();
 
     </script>
   </body>
