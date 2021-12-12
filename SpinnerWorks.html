@@ -21,58 +21,76 @@
     <script >
 
       // declare constant variables
-      let pointerX = -1;
-      let pointerY = -1;
-      let mouseDown = false
       const canvas = document.querySelector('canvas');
+      const c = canvas.getContext('2d'); // c within canvas is always context
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      const c = canvas.getContext('2d'); // c within canvas is always context
+      
+      const mouse = {
+        x: innerWidth / 2,
+        y: innerHeight / 2
+      }
 
-
+      addEventListener('resize', () => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      })
       document.onmousedown = function(){
 				mouseDown = true;
-        console.log("mouseDown")
+
 			};
 
       document.onmouseup = function(){
 				mouseDown = false;
 			};
 
-      document.onmousemove = function(event) {
-        pointerX = event.pageX;
-        pointerY = event.pageY;
-      }
-      setInterval(pointerCheck, 1000);
-      function pointerCheck() {
-          //console.log('Cursor at: ' + pointerX + ', ' + pointerY);
-      } 
 
-      function Spinner(cursorX, cursorY, rotation) {
-        this.cursorX = pointerX
-        this.cursorY = pointerY
-        this.rotation = 1
-
-        this.drawHold = function() {
-          c.beginPath()
-          c.moveTo(pointerX, pointerY);
-        }
-        this.drawRelease = function () {
-          c.lineTo(pointerX, pointerY);
-          c.strokeStyle = 'red';
-          c.stroke()
-          console.log("stroked...")
-        }
-        this.update = function() {
-          this.x += this.dx
-          this.y += this.dy
-          this.draw()
+      class Spinner {
+        constructor(x, y, radius, color) {
+          this.cursorX = pointerX
+          this.cursorY = pointerY
+          this.rotation = 1
+  
+          this.drawHold = function() {
+            c.beginPath()
+            c.moveTo(pointerX, pointerY);
+          }
+          this.drawRelease = function () {
+            c.lineTo(pointerX, pointerY);
+            c.strokeStyle = 'red';
+            c.stroke()
+            console.log("stroked...")
+          }
+          this.update = function() {
+            this.x += this.dx
+            this.y += this.dy
+            this.draw()
+          }
         }
       }
 
+      let spinners
+      function init() {
+        spinners = []
+      }
+
+      function animate() {
+        requestAnimationFrame(animate)
+        c.clearRect(0,0, canvas.width, canvas.height)
+      }
       
-      
-    
+      init()
+      animate()
+      addEventListener('click', (event) => {
+        mouse.x = event.clientX
+        mouse.y = event.clientY
+        console.log(mouse)
+        // particles
+        for (let i = 0; i < 400; i++){
+
+        }
+      })
+
     </script>
   </body>
 </html>
