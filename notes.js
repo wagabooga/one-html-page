@@ -135,3 +135,27 @@ setInterval(pointerCheck, 1000);
 function pointerCheck() {
     //console.log('Cursor at: ' + pointerX + ', ' + pointerY);
 }
+
+
+// class Spinner {
+constructor(x, y, radius, color) {
+        this.x = mouse.x
+        this.y = mouse.y
+
+        this.drawHold = function() {
+            c.beginPath()
+            c.moveTo(pointerX, pointerY);
+        }
+        this.drawRelease = function() {
+            c.lineTo(pointerX, pointerY);
+            c.strokeStyle = 'red';
+            c.stroke()
+            console.log("stroked...")
+        }
+        this.update = function() {
+            this.x += this.dx
+            this.y += this.dy
+            this.draw()
+        }
+    }
+    // }
