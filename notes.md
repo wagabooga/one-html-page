@@ -14,3 +14,8 @@ try to get an animated spinner
 
 ---------------------------------
 canvas, see ant farm window
+
+
+
+have spinner rotating around cursor, on click u spawn a firework effect from that angle
+size bar
