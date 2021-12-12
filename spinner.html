@@ -9,9 +9,18 @@
   </head>
   <body>
     <div id="root">
-      <canvas id="canvas" width="610" height="610" style="border:4px solid gray;"></canvas>
+      <canvas 
+      id="canvas" 
+      width="610" 
+      height="610" 
+      style="
+        border:1px solid black;
+        
+        ">
+      </canvas>
       <div id="spinner_container"></div>
     </div>
+    {% comment %} script {% endcomment %}
     <script>
       const root = document.getElementById("root");
       // refering to our canvas by id
@@ -111,49 +120,6 @@
         ctx.strokeStyle="#c0c0c0"
         ctx.stroke()
       }
-
-
-
-
-
-
-
-
-
-      // make empty 2d array with nothing in it (HELPER FUNC)
-      // function make2DArray(cols,rows) {
-      //   let arr = new Array(cols);
-      //   for (let i = 0; i < arr.length; i++) {
-      //     arr[i] = new Array(rows);
-      //   }
-      //   return arr
-      // }
-
-      // function setup() {
-      //   createCanvas(200,200)
-      //   cols = width / resolutions;
-      //   rows = height / resolutions;
-
-      //   grid = make2DArray(cols,rows);
-      //   for (let i = 0; i < cols; i++){
-      //     for (let j = 0; j < rows; j++){
-      //       grid[i][j] = floor(random(2))
-      //     }
-      //   }
-      // }
-      
-      // function draw() {
-      //   for (let i = 0; i < cols; i++){
-      //     for (let j = 0; j < rows; j++){
-      //       let x = i * resolution;
-      //       let y = j * resoltuion;
-      //       if (grid[i][j] == 1) {
-      //         fill(255);
-      //         rect(x,y,resolution,resolution)
-      //       }
-      //     }
-      //   }
-      // }
 
 
     </script>

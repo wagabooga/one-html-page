@@ -11,3 +11,6 @@ create new spinner for display
 
 change the display of the page to be reactive, maybe even mobile friendly (later TODO?)
 try to get an animated spinner 
+
+---------------------------------
+canvas, see ant farm window
