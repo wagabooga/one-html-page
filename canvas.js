@@ -1,11 +1,3 @@
-let canvas = document.querySelector('canvas');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-// c within canvas is always context
-const c = canvas.getContext('2d');
-
 // --------------------- NOTES ---------------------
 
 // c.fillRect(x, y, width, height) creates a rectangle at x,y cooridnates and the size
@@ -18,6 +10,30 @@ const c = canvas.getContext('2d');
 // see - https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:trig/x2ec2f6f830c9fb89:radians/v/introduction-to-radians
 
 // --------------------- ----- ---------------------
+// 
+let pointerX = -1;
+let pointerY = -1;
+document.onmousemove = function(event) {
+    pointerX = event.pageX;
+    pointerY = event.pageY;
+}
+setInterval(pointerCheck, 1000);
+
+function pointerCheck() {
+    console.log('Cursor at: ' + pointerX + ', ' + pointerY);
+}
+
+const canvas = document.querySelector('canvas');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// c within canvas is always context
+const c = canvas.getContext('2d');
+
+
+
+
 
 // rect
 c.fillStyle = 'rgba(255, 0, 0, 0.5)';
@@ -35,8 +51,18 @@ c.lineTo(600, 500);
 c.strokeStyle = 'red';
 c.stroke()
 
-// arc / circle
-c.beginPath()
-c.arc(300, 300, 30, 0, Math.PI * 2)
-c.strokeStyle = 'blue';
-c.stroke()
+// // arc / circle
+// c.beginPath()
+// c.arc(300, 300, 30, 0, Math.PI * 2)
+// c.strokeStyle = 'blue';
+// c.stroke()
+
+for (var i = 0; i < 3; i++) {
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+
+    c.beginPath()
+    c.arc(x, y, 30, 0, Math.PI * 2)
+    c.strokeStyle = 'blue';
+    c.stroke()
+}
