@@ -9,33 +9,33 @@
 // c.arc(x, y, radius:int, startAngle, Float)  startAngle/float are radians
 // see - https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:trig/x2ec2f6f830c9fb89:radians/v/introduction-to-radians
 
-// --------------------- ----- ---------------------
-// 
-let pointerX = -1;
-let pointerY = -1;
-document.onmousemove = function(event) {
-    pointerX = event.pageX;
-    pointerY = event.pageY;
-}
-setInterval(pointerCheck, 1000);
+// IDEAS
+// on a grid, get spinners to randomly pop up at different speed/sizes, and maybe color
 
-function pointerCheck() {
-    console.log('Cursor at: ' + pointerX + ', ' + pointerY);
-}
+// refer dancing_man for spinners, different frames and playing
 
-const canvas = document.querySelector('canvas');
+// BABY STEPS
+// first, get a spinner to pop up on a page
+// figure out coloring and positioning and animation
+// create new spinner for display
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-// c within canvas is always context
-const c = canvas.getContext('2d');
+// change the display of the page to be reactive, maybe even mobile friendly (later TODO?)
+// try to get an animated spinner 
+
+// canvas, see ant farm window
 
 
 
+// have spinner rotating around cursor, on click u spawn a firework effect from that angle
+// size bar
+
+// -- make a randomizer helper function colors for colors
+// ---------------------------------
 
 
-// rect
+//  example code 
+rect
 c.fillStyle = 'rgba(255, 0, 0, 0.5)';
 c.fillRect(100, 100, 100, 100);
 c.fillStyle = 'rgba(0, 0, 255, 0.5)';
@@ -43,7 +43,7 @@ c.fillRect(300, 450, 100, 100);
 c.fillStyle = 'rgba(0, 255, 0, 0.5)';
 c.fillRect(700, 307, 100, 100);
 
-// line
+line
 c.beginPath()
 c.moveTo(50, 300);
 c.lineTo(400, 300);
@@ -51,13 +51,10 @@ c.lineTo(600, 500);
 c.strokeStyle = 'red';
 c.stroke()
 
-// // arc / circle
-// c.beginPath()
-// c.arc(300, 300, 30, 0, Math.PI * 2)
-// c.strokeStyle = 'blue';
-// c.stroke()
+arc / circle
 
-for (var i = 0; i < 3; i++) {
+
+for (var i = 0; i < 2; i++) {
     let x = Math.random() * window.innerWidth;
     let y = Math.random() * window.innerHeight;
 

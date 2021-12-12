@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Spinnerworks</title>
+    <style type="text/css">
+
+      canvas {
+        border: 1px solid black;
+      }
+
+      body {
+        margin: 0;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script >
+      // Mouse Checker
+      let pointerX = -1;
+      let pointerY = -1;
+      document.onmousemove = function(event) {
+          pointerX = event.pageX;
+          pointerY = event.pageY;
+      }
+      setInterval(pointerCheck, 1000);
+      
+      function pointerCheck() {
+          console.log('Cursor at: ' + pointerX + ', ' + pointerY);
+      }
+      
+      // declare constant variables
+      const canvas = document.querySelector('canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const c = canvas.getContext('2d'); // c within canvas is always context
+      
+      
+      function animate() {
+          requestAnimationFrame(animate);
+          c.clearRect(0, 0, innerWidth, innerHeight)
+          c.beginPath()
+          c.arc(pointerX, pointerY, 30, 0, Math.PI * 2, false)
+          c.strokeStyle = 'blue';
+          c.stroke()
+      }
+      
+      animate();
+    </script>
+  </body>
+</html>
