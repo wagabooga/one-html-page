@@ -19,8 +19,9 @@
   <body>
     <canvas></canvas>
     <script >
+
       // Mouse Checker
-      let pointerX = -1;
+      /* let pointerX = -1;
       let pointerY = -1;
       document.onmousemove = function(event) {
           pointerX = event.pageX;
@@ -30,7 +31,8 @@
       
       function pointerCheck() {
           console.log('Cursor at: ' + pointerX + ', ' + pointerY);
-      }
+      } 
+      */
       
       // declare constant variables
       const canvas = document.querySelector('canvas');
@@ -38,17 +40,34 @@
       canvas.height = window.innerHeight;
       const c = canvas.getContext('2d'); // c within canvas is always context
       
-      
+      let x = 200;
+      let y = 200;
+      let dx = 4;
+      let dy = 4
+      let radius = 30
       function animate() {
           requestAnimationFrame(animate);
           c.clearRect(0, 0, innerWidth, innerHeight)
+
           c.beginPath()
-          c.arc(pointerX, pointerY, 30, 0, Math.PI * 2, false)
+          c.arc(x, y, radius, 0, Math.PI * 2, false)
           c.strokeStyle = 'blue';
           c.stroke()
+
+          // this is bounce back
+          if (x + radius > innerWidth || x - radius < 0) {
+            dx = -dx;
+          }
+          if (y + radius > innerHeight || y - radius < 0) {
+            dy = -dy;
+          }
+          // move
+          x += dx
+          y += dy
       }
       
       animate();
+
     </script>
   </body>
 </html>
