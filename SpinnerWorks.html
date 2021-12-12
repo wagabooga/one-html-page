@@ -29,7 +29,9 @@
         x: innerWidth / 2,
         y: innerHeight / 2
       }
-      
+      const gravity = 0.006
+      const friction = 1
+
       addEventListener('resize', () => {
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
@@ -43,17 +45,24 @@
           this.radius = radius
           this.color = color
           this.velocity = velocity
+          this.alpha = 1 // alpha = opacity
         }
 
         draw() {
+          c.save()
+          c.globalAlpha = this.alpha
           c.beginPath()
           c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
           c.fillStyle = this.color
           c.fill()
           c.closePath()
+          c.restore()
         }
         update() {
           this.draw()
+          this.velocity.x *= friction
+          this.velocity.x *= friction
+          this.velocity.y += gravity
           this.x += this.velocity.x
           this.y += this.velocity.y
         }
@@ -66,9 +75,16 @@
 
       function animate() {
         requestAnimationFrame(animate)
-        c.clearRect(0,0, canvas.width, canvas.height)
+        // make sliders for this VVVV
+        c.fillStyle = 'rgba(0, 0, 0, .15)'
+        c.fillRect(0,0, canvas.width, canvas.height)
         spinners.forEach((spinner) => {
-          spinner.update()
+          if (spinner.alpha > 0){
+            spinner.update()
+          }
+          else {
+            spinner.splice(i, 1)
+          }
         })
       }
       
@@ -83,9 +99,9 @@
         for (let i = 0; i < particleCount; i++){
           spinners.push(
             new Spinner(
-              mouse.x, mouse.y, 5,  'blue', {
-                x: Math.cos(angleIncrement * i) * Math.random(), 
-                y: Math.sin(angleIncrement * i) * Math.random()
+              mouse.x, mouse.y, 5,  `hsl(${Math.random() * 360}, 50%, 50%)`, {
+                x: Math.cos(angleIncrement * i) * (Math.random() * 10), 
+                y: Math.sin(angleIncrement * i) * (Math.random() * 10)
               }
             ))
           }
