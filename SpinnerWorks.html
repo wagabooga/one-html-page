@@ -54,10 +54,10 @@
                 c.save()
                 c.globalAlpha = this.alpha
                 c.beginPath()
-                c.translate(this.x + 25, this.y + 25);
+                c.translate(this.x, this.y + 25);
                 c.rotate(this.rotation)
-                c.translate(-this.x - 25, -this.y - 25);
-                c.rect(this.x, this.y, 50, 50, false)
+                c.translate(-this.x, -this.y - 25);
+                c.rect(this.x, this.y, 1, 50, false)
                 c.fillStyle = this.color
                 c.fill()
                 c.closePath()
