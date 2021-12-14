@@ -28,7 +28,8 @@
         }
         const gravity = 0.006
         const friction = 1
-        const rotationAngle = 0.0005
+        const rotationAngle = 0.1
+
 
         addEventListener('resize', () => {
             canvas.width = window.innerWidth
@@ -44,30 +45,42 @@
                     this.color = color
                     this.velocity = velocity
                     this.alpha = 1 // alpha = opacity
+                    this.anchorX = x
+                    this.anchorY = y
+                    this.rotation = rotation
                 }
                 // change arc to LineTo
-            draw() {
+            drawSpinner() {
                 c.save()
                 c.globalAlpha = this.alpha
                 c.beginPath()
-
+                c.translate(this.x + 25, this.y + 25);
+                c.rotate(this.rotation)
+                c.translate(-this.x - 25, -this.y - 25);
                 c.rect(this.x, this.y, 50, 50, false)
                 c.fillStyle = this.color
                 c.fill()
                 c.closePath()
                 c.restore()
             }
+            drawAnchor() {
+                c.beginPath()
+                c.rect(this.anchorX, this.anchorY, 50, 50, false)
+                c.fillStyle = "black"
+                c.fill()
+                c.closePath()
+                c.restore()
+            }
             update() {
                 // add rotation here
-                c.rotate(rotationAngle)
-                this.draw()
-                this.x += 1
-                this.y += 1
-                    // this.velocity.x *= friction
-                    // this.velocity.x *= friction
-                    // this.velocity.y += gravity
-                    // this.x += this.velocity.x
-                    // this.y += this.velocity.y
+                this.drawSpinner()
+                this.drawAnchor()
+                this.velocity.x *= friction
+                this.velocity.x *= friction
+                this.velocity.y += gravity
+                this.anchorX += this.velocity.x
+                this.anchorY += this.velocity.y
+                this.rotation += 0.01
             }
         }
 
@@ -93,7 +106,8 @@
         addEventListener('click', (event) => {
             mouse.x = event.clientX
             mouse.y = event.clientY
-            const particleCount = 400
+
+            const particleCount = 200
             const angleIncrement = (Math.PI * 2) / particleCount
             for (let i = 0; i < particleCount; i++) {
                 spinners.push(
