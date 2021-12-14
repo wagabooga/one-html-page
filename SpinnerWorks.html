@@ -38,10 +38,9 @@
         })
 
         class Spinner {
-            constructor(x, y, radius, color, velocity, rotation) {
+            constructor(x, y, color, velocity, rotation) {
                     this.x = x
                     this.y = y
-                    this.radius = radius
                     this.color = color
                     this.velocity = velocity
                     this.alpha = 1 // alpha = opacity
@@ -54,10 +53,10 @@
                 c.save()
                 c.globalAlpha = this.alpha
                 c.beginPath()
-                c.translate(this.x, this.y + 25);
+                c.translate(this.x, this.y);
                 c.rotate(this.rotation)
-                c.translate(-this.x, -this.y - 25);
-                c.rect(this.x, this.y, 1, 50, false)
+                c.translate(-this.x, -this.y);
+                c.rect(this.x, this.y, 3, 10, false)
                 c.fillStyle = this.color
                 c.fill()
                 c.closePath()
@@ -65,8 +64,11 @@
             }
             drawAnchor() {
                 c.beginPath()
-                c.rect(this.anchorX, this.anchorY, 50, 50, false)
-                c.fillStyle = "black"
+                c.translate(this.x, this.y);
+                c.rotate(this.rotation)
+                c.translate(-this.x, -this.y);
+                c.rect(this.anchorX, this.anchorY, 3, 25, false)
+                c.fillStyle = this.color
                 c.fill()
                 c.closePath()
                 c.restore()
@@ -92,7 +94,7 @@
 
         function animate() {
             requestAnimationFrame(animate)
-            c.fillStyle = 'rgba(255, 255, 255, .15)'
+            c.fillStyle = 'rgba(0, 0, 255, .01)'
             c.fillRect(0, 0, canvas.width, canvas.height)
             spinners.forEach((spinner) => {
                 if (spinner.alpha > 0) {
@@ -107,12 +109,12 @@
             mouse.x = event.clientX
             mouse.y = event.clientY
 
-            const particleCount = 200
+            const particleCount = 5
             const angleIncrement = (Math.PI * 2) / particleCount
             for (let i = 0; i < particleCount; i++) {
                 spinners.push(
                     new Spinner(
-                        mouse.x, mouse.y, 5, `hsl(${Math.random() * 360}, 50%, 50%)`, {
+                        mouse.x, mouse.y, `hsl(${Math.random() * 360}, 50%, 50%)`, {
                             x: Math.cos(angleIncrement * i) * (Math.random() * 10),
                             y: Math.sin(angleIncrement * i) * (Math.random() * 10)
                         }, rotationAngle

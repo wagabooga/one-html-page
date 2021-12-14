@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spinnerworks</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        /*    {declare vars}
+
+                                          const canvas = document.querySelector('canvas');
+                                          const c = canvas.getContext('2d');
+                                          canvas.width = window.innerWidth;
+                                          canvas.height = window.innerHeight;
+
+                                          const mouse = {
+                                              x: innerWidth / 2,
+                                              y: innerHeight / 2
+                                          }
+
+                                          const gravity = 0.006
+                                          const friction = 1
+                                          const rotationAngle = 0.1
+
+                                        */
+
+        // resize (addEventListener)
+
+        /*    {Spinner class}
+
+          // constructor
+            // needs x/y values to determine where the spinner originates from
+            // needs velocity (speed it firework effects outwards)
+            // needs a rotation speed (how fast the spinner should turn)
+
+          // draw() function
+          // this will draw out the +, each individual spinner will consist of two lines
+            // c.beginPath()
+            // c.translate() <- translate to reset origin
+            // c.rect(x, y, width, height) <- using rect because easier to create "lines"
+            // c.fillStyle = this.color (add color to our Spinner Class that is randomized)
+            // c.fill()
+            // c.closePath() [NOTE::: maybe try off one singular path? have an origin point and 4x lines drawn outside the path?]
+
+          // update() function
+          // update() will consist of handling the animation effects. Spinner-rotation & Fireworks-gravity/velocity
+            // this.draw()
+            // this.rotation += this.rotation [NOTE:: ADD ROTATION TO SPINNER OBJECT TO MAKE IT BE AVAILABLE AS A SLIDER]
+
+        */
+
+        /*      {animate}
+
+          function animate() {
+          requestAnimationFrame(animate) <== repeat animation loop
+          c.fillStyle = 'rgba(255, 255, 255, .01)' <== assign background color
+          c.fillRect(0, 0, canvas.width, canvas.height) <== assign background color
+
+          // loop over each spinner, have conditional checks FOR : OOB check 
+          spinners.forEach((spinner) => {
+            if (spinner.alpha > 0) {
+              spinner.update()
+            } 
+            else {
+              spinner.splice(i, 1)
+            }
+            })
+          }
+
+        */
+
+        /*      {Click listener}
+
+        addEventListener('click', (event) => {
+            mouse.x = event.clientX
+            mouse.y = event.clientY
+
+            const particleCount = 5 <== how many extra spinners do you want to make
+            const angleIncrement = (Math.PI * 2) / particleCount <== random angle
+
+            for (let i = 0; i < particleCount; i++) { <== onclick create (spinners.push) new spinners into the spinners array that is rendered in animate
+                spinners.push(
+                    new Spinner(
+                        mouse.x, mouse.y, `hsl(${Math.random() * 360}, 50%, 50%)`, {
+                            x: Math.cos(angleIncrement * i) * (Math.random() * 10),
+                            y: Math.sin(angleIncrement * i) * (Math.random() * 10)
+                        }, rotationAngle
+                    ))
+            }
+            console.log(spinners)
+        })
+
+        */
+    </script>
+</body>
+
+</html>
