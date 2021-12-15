@@ -87,14 +87,12 @@
             }
             update() {
                 this.draw()
+                c.translate(this.getCenterX(), this.getCenterY());
+                c.rotate(Math.PI / 2 + 0.01);
+                c.translate(-this.getCenterX(), -this.getCenterY());
             }
         }
 
-        function rotateCanvas(centerX, centerY) {
-            c.translate(centerX, centerY);
-            c.rotate(Math.PI / 2 + 0.01);
-            c.translate(-centerX, -centerY);
-        }
 
 
 
@@ -134,12 +132,11 @@
 
 
         function animate() {
-            c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            requestAnimationFrame(animate)
             crosses.forEach((cross) => {
-                rotateCanvas(cross.getCenterX(), cross.getCenterY())
                 cross.update()
             })
-            requestAnimationFrame(animate)
         }
 
         addEventListener('click', (event) => {
@@ -150,7 +147,7 @@
             for (let i = 0; i < particleCount; i++) {
                 crosses.push(
                     new Spinner(
-                        mouse.x, mouse.y, 5, 50, `hsl(${Math.random() * 360}, 50%, 50%)`, (Math.PI / 2)
+                        mouse.x, mouse.y, 5, 50, `hsl(${Math.random() * 360}, 50%, 50%)`, (0.5)
                     ))
             }
             console.log(frames)
