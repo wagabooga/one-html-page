@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spinnerworks</title>
+    <title>template</title>
     <style type="text/css">
 
     </style>
@@ -12,23 +12,25 @@
 <body>
     <canvas></canvas>
     <script>
-        /*    {declare vars}
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const c = canvas.getContext('2d');
 
-                                          const canvas = document.querySelector('canvas');
-                                          const c = canvas.getContext('2d');
-                                          canvas.width = window.innerWidth;
-                                          canvas.height = window.innerHeight;
+        // const gravity = 0.006
+        // const friction = 1
+        // const rotationAngle = 0.1
 
-                                          const mouse = {
-                                              x: innerWidth / 2,
-                                              y: innerHeight / 2
-                                          }
+        const mouse = {
+            x: innerWidth / 2,
+            y: innerHeight / 2
+        }
 
-                                          const gravity = 0.006
-                                          const friction = 1
-                                          const rotationAngle = 0.1
+        document.onmousemove = function(event) {
+            mouse.x = event.pageX;
+            mouse.y = event.pageY;
+        }
 
-                                        */
 
         // resize (addEventListener)
 
