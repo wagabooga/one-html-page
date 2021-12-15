@@ -57,6 +57,48 @@
 
         */
 
+
+        class Spinner {
+            constructor(x, y, width, height, color, startingRotation) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.color = color
+                this.startingRotation = startingRotation
+            }
+
+            getCenterX() {
+                return this.x + this.width / 2;
+            }
+
+            getCenterY() {
+                return this.y + this.height / 2;
+            }
+
+            draw() {
+                const x = this.getCenterX();
+                const y = this.getCenterY();
+                c.fillStyle = this.color;
+                c.translate(x, y);
+                c.rotate(this.startingRotation);
+                c.translate(-x, -y);
+                c.fillRect(this.x, this.y, this.width, this.height);
+            }
+            update() {
+                this.draw()
+            }
+        }
+
+        function rotateCanvas(centerX, centerY) {
+            c.translate(centerX, centerY);
+            c.rotate(Math.PI / 2 + 0.01);
+            c.translate(-centerX, -centerY);
+        }
+
+
+
+
         /*      {animate}
 
           function animate() {
@@ -77,28 +119,67 @@
 
         */
 
-        /*      {Click listener}
+
+        let crosses
+
+        function init() {
+            crosses = []
+        }
+
+        addEventListener('resize', () => {
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+            init()
+        })
+
+
+        function animate() {
+            c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            crosses.forEach((cross) => {
+                rotateCanvas(cross.getCenterX(), cross.getCenterY())
+                cross.update()
+            })
+            requestAnimationFrame(animate)
+        }
 
         addEventListener('click', (event) => {
             mouse.x = event.clientX
             mouse.y = event.clientY
 
-            const particleCount = 5 <== how many extra spinners do you want to make
-            const angleIncrement = (Math.PI * 2) / particleCount <== random angle
-
-            for (let i = 0; i < particleCount; i++) { <== onclick create (spinners.push) new spinners into the spinners array that is rendered in animate
-                spinners.push(
+            const particleCount = 1
+            for (let i = 0; i < particleCount; i++) {
+                crosses.push(
                     new Spinner(
-                        mouse.x, mouse.y, `hsl(${Math.random() * 360}, 50%, 50%)`, {
-                            x: Math.cos(angleIncrement * i) * (Math.random() * 10),
-                            y: Math.sin(angleIncrement * i) * (Math.random() * 10)
-                        }, rotationAngle
+                        mouse.x, mouse.y, 5, 50, `hsl(${Math.random() * 360}, 50%, 50%)`, (Math.PI / 2)
                     ))
             }
-            console.log(spinners)
+            console.log(frames)
         })
 
-        */
+        init()
+        animate()
+            /*      {Click listener}
+
+            addEventListener('click', (event) => {
+                mouse.x = event.clientX
+                mouse.y = event.clientY
+
+                const particleCount = 5 <== how many extra spinners do you want to make
+                const angleIncrement = (Math.PI * 2) / particleCount <== random angle
+
+                for (let i = 0; i < particleCount; i++) { <== onclick create (spinners.push) new spinners into the spinners array that is rendered in animate
+                    spinners.push(
+                        new Spinner(
+                            mouse.x, mouse.y, `hsl(${Math.random() * 360}, 50%, 50%)`, {
+                                x: Math.cos(angleIncrement * i) * (Math.random() * 10),
+                                y: Math.sin(angleIncrement * i) * (Math.random() * 10)
+                            }, rotationAngle
+                        ))
+                }
+                console.log(spinners)
+            })
+
+            */
     </script>
 </body>
 

@@ -56,7 +56,7 @@
                 c.translate(this.x, this.y);
                 c.rotate(this.rotation)
                 c.translate(-this.x, -this.y);
-                c.rect(this.x, this.y, 3, 10, false)
+                c.rect(this.x, this.y, 50, 50, false)
                 c.fillStyle = this.color
                 c.fill()
                 c.closePath()
@@ -67,7 +67,7 @@
                 c.translate(this.x, this.y);
                 c.rotate(this.rotation)
                 c.translate(-this.x, -this.y);
-                c.rect(this.anchorX, this.anchorY, 3, 25, false)
+                c.rect(this.anchorX, this.anchorY, 50, 50, false)
                 c.fillStyle = this.color
                 c.fill()
                 c.closePath()
@@ -94,7 +94,7 @@
 
         function animate() {
             requestAnimationFrame(animate)
-            c.fillStyle = 'rgba(0, 0, 255, .01)'
+            c.fillStyle = 'rgba(0, 0, 0, .01)'
             c.fillRect(0, 0, canvas.width, canvas.height)
             spinners.forEach((spinner) => {
                 if (spinner.alpha > 0) {

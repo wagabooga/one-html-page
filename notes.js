@@ -61,7 +61,7 @@ for (var i = 0; i < 2; i++) {
 
 
 
-function Circle(x, y, dx, dy, radius) {
+class Circle(x, y, dx, dy, radius) {
 
     this.x = x;
     this.y = y;
